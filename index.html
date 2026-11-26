@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 Reasons Why You're My Bestie ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+min-height:100vh;
+background:radial-gradient(circle at top,#29101f,#080608 65%);
+color:white;font-family:Georgia,serif;overflow-x:hidden
+}
+.hearts{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.heart{
+position:absolute;bottom:-30px;color:#ff5b9d;opacity:0;
+animation:float 9s linear infinite
+}
+@keyframes float{
+0%{transform:translateY(0) rotate(0);opacity:0}
+20%{opacity:.5}
+100%{transform:translateY(-110vh) rotate(40deg);opacity:0}
+}
+.container{
+position:relative;z-index:1;width:100%;max-width:650px;
+min-height:100vh;margin:auto;padding:35px 22px;
+display:flex;flex-direction:column;justify-content:center;
+align-items:center;text-align:center
+}
+.tag{color:#ff8bb8;letter-spacing:4px;font-size:11px;margin-bottom:20px}
+h1{
+font-size:clamp(38px,9vw,65px);color:#ffb6d1;
+text-shadow:0 0 25px #ff4081;margin-bottom:15px
+}
+.description{
+max-width:450px;color:#d9c3ce;font-size:16px;
+line-height:1.9;margin-bottom:30px
+}
+button{
+background:linear-gradient(135deg,#ff438b,#b91c61);
+color:white;border:none;padding:15px 35px;border-radius:40px;
+font-size:16px;font-family:Georgia,serif;cursor:pointer;
+box-shadow:0 0 25px #ff438b66;transition:.3s
+}
+button:active{transform:scale(.95)}
+#story{display:none;width:100%;animation:fadeIn 1.5s}
+.counter{color:#ff8bb8;font-size:13px;letter-spacing:3px;margin-bottom:35px}
+.line{
+min-height:180px;display:flex;align-items:center;justify-content:center;
+font-size:clamp(23px,6vw,34px);line-height:1.6;
+color:#fff0f5;text-shadow:0 0 15px #ff438b55;padding:10px
+}
+.line.show{animation:lyric 1.2s ease}
+@keyframes lyric{
+from{opacity:0;transform:translateY(20px);filter:blur(5px)}
+to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+.progress{width:85%;height:3px;background:#ffffff22;border-radius:10px;margin:25px 0;overflow:hidden}
+.bar{width:0%;height:100%;background:#ff5b9d;transition:width .5s}
+.controls{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.controls button{padding:12px 24px;font-size:14px}
+.secondary{background:#ffffff15;border:1px solid #ff8bb855;box-shadow:none}
+.final{
+font-size:clamp(30px,8vw,48px);color:#ff9fc5;
+line-height:1.5;text-shadow:0 0 25px #ff438b
+}
+.small{color:#d9c3ce;margin-top:20px;font-size:17px;line-height:1.8}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+footer{color:#9c7c8b;font-size:11px;margin-top:35px}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- BACKGROUND SONG -->
+<audio id="bgMusic" preload="auto" loop>
+<source src="Hua Hain Aaj Pehli Baar Sanam Re 320 Kbps.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+
+<div id="intro">
+<div class="tag">A LITTLE SURPRISE FOR MY BESTIE</div>
+
+<h1>Hey Bhumi! 💗</h1>
+
+<div class="description">
+Some people come into our lives and make everything
+a little more beautiful. And you're one of those people.<br><br>
+
+You're not just my bestie, you're my partner in
+random talks, stupid jokes, endless laughter and
+unforgettable memories.<br><br>
+
+So here's something special for you.
+100 reasons why you're my favourite person
+and why I'm lucky to have you in my life. 🫶🏻
+<br><br>
+Because a bestie like you deserves a little appreciation! ❤️
+</div>
+
+<button onclick="startStory()">Let's Start Bestie! 💗</button>
+</div>
+
+<div id="story">
+<div class="tag">100 REASONS WHY YOU'RE MY BESTIE</div>
+<div class="counter" id="counter">01 / 100</div>
+<div class="line" id="line"></div>
+
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
+
+<div class="controls">
+<button class="secondary" onclick="previous()">← Back</button>
+<button onclick="next()">Next 💗</button>
+<button class="secondary" id="pauseBtn" onclick="togglePause()">Pause</button>
+</div>
+
+<footer>MADE WITH FRIENDSHIP, JUST FOR BHUMI ❤️</footer>
+</div>
+</div>
+
+<script>
+
+const reasons = [
+"Your smile can instantly make my day better.",
+"You're one of my favourite people.",
+"You make boring moments fun.",
+"Your random talks are the best.",
+"You understand my weirdness.",
+"You're always fun to talk to.",
+"Your laughter is contagious.",
+"You never let a conversation get boring.",
+"You make ordinary days memorable.",
+"You're my partner in crime.",
+"You listen to my nonsense.",
+"You know how to make me laugh.",
+"You're genuinely special.",
+"You make me feel comfortable being myself.",
+"Your friendship means a lot to me.",
+"You never run out of funny things to say.",
+"You make even silence comfortable.",
+"You're my favourite troublemaker.",
+"You have a beautiful heart.",
+"You make life a little more interesting.",
+"You're always there for random gossip.",
+"You know how to cheer me up.",
+"You make stupid jokes feel funny.",
+"You're someone I can trust.",
+"You bring positive energy.",
+"You're my favourite notification sometimes.",
+"You never fail to surprise me.",
+"You make memories worth keeping.",
+"You're perfectly imperfect.",
+"You understand my mood swings.",
+"You make me laugh without even trying.",
+"You're a whole vibe.",
+"You're always fun to be around.",
+"You make small things special.",
+"Your friendship is a blessing.",
+"You're my unofficial therapist.",
+"You never let things feel boring.",
+"You make every conversation interesting.",
+"You're someone I can be silly with.",
+"You have the best reactions.",
+"You make bad days feel lighter.",
+"You're one of a kind.",
+"You deserve all the happiness.",
+"You're my favourite gossip partner.",
+"You know how to handle my drama.",
+"You make me smile randomly.",
+"You're always full of surprises.",
+"You have the cutest way of annoying me.",
+"You're an important part of my life.",
+"You make friendship feel beautiful.",
+"You're someone I can count on.",
+"You're my favourite headache.",
+"You make every memory better.",
+"You're honest with me.",
+"You accept me as I am.",
+"You never pretend to be someone else.",
+"You're my partner in random adventures.",
+"You make me forget my worries.",
+"You're full of good vibes.",
+"You make even silly moments unforgettable.",
+"You're always worth listening to.",
+"You have a special place in my life.",
+"You're the reason behind many smiles.",
+"You make friendship feel effortless.",
+"You're my favourite person to tease.",
+"You bring happiness without trying.",
+"You're someone I never want to lose touch with.",
+"You make my life more colourful.",
+"You're a beautiful soul.",
+"You're always fun, even on normal days.",
+"You make me laugh at the dumbest things.",
+"You're my favourite human to annoy.",
+"You make every chat worth opening.",
+"You're always yourself.",
+"You're a walking bundle of entertainment.",
+"You make friendship feel like family.",
+"You're someone I genuinely appreciate.",
+"You're a reason for many happy memories.",
+"You make random moments legendary.",
+"You're my forever gossip partner.",
+"You're a little crazy, and that's amazing.",
+"You know how to make things better.",
+"You're one of my biggest blessings.",
+"You make me feel understood.",
+"You're always special in your own way.",
+"You're the definition of a true bestie.",
+"You make distance feel less important.",
+"You're someone I can share my happiness with.",
+"You're my favourite source of chaos.",
+"You make even the simplest day memorable.",
+"You're a friend worth keeping forever.",
+"You deserve the world and more.",
+"You're irreplaceable in your own way.",
+"You're the best kind of unexpected friendship.",
+"You make life more fun.",
+"You're someone I'm grateful to know.",
+"You're my favourite partner in nonsense.",
+"You're simply amazing, Bhumi.",
+"Because you're YOU, and that's more than enough! 💗"
+];
+
+let current=0;
+let timer=null;
+let paused=false;
+
+const bgMusic=document.getElementById("bgMusic");
+
+function playMusic(){
+const playPromise=bgMusic.play();
+
+if(playPromise!==undefined){
+playPromise.catch(error=>{
+console.log("Audio playback could not start:",error);
+});
+}
+}
+
+function stopMusic(){
+bgMusic.pause();
+bgMusic.currentTime=0;
+}
+
+function startStory(){
+document.getElementById("intro").style.display="none";
+document.getElementById("story").style.display="block";
+
+current=0;
+showReason();
+playMusic();
+startTimer();
+}
+
+function showReason(){
+
+const line=document.getElementById("line");
+
+line.classList.remove("show");
+void line.offsetWidth;
+
+if(current>=reasons.length){
+
+line.innerHTML=`
+<div class="final">
+BESTIES FOREVER<br>BHUMI 💗
+<div class="small">
+No matter where life takes us,<br>
+I hope our friendship always stays this special.<br><br>
+Thank you for being YOU! 🫶🏻<br>
+Stay crazy, stay happy and never change! ❤️
+</div>
+</div>`;
+
+document.getElementById("counter").innerText="100 / 100";
+document.getElementById("bar").style.width="100%";
+
+clearInterval(timer);
+stopMusic();
+return;
+}
+
+line.innerText=reasons[current];
+line.classList.add("show");
+
+document.getElementById("counter").innerText=
+String(current+1).padStart(2,"0")+" / 100";
+
+document.getElementById("bar").style.width=
+((current+1)/100*100)+"%";
+}
+
+function next(){
+
+if(current<reasons.length){
+current++;
+showReason();
+startTimer();
+}
+}
+
+function previous(){
+
+if(current>0){
+current--;
+showReason();
+startTimer();
+}
+}
+
+function startTimer(){
+
+clearInterval(timer);
+
+paused=false;
+document.getElementById("pauseBtn").innerText="Pause";
+
+if(current>=reasons.length)return;
+
+playMusic();
+
+timer=setInterval(()=>{
+
+if(!paused){
+
+current++;
+showReason();
+
+if(current>=reasons.length){
+clearInterval(timer);
+}
+
+}
+
+},4500);
+}
+
+function togglePause(){
+
+paused=!paused;
+
+document.getElementById("pauseBtn").innerText=
+paused?"Play":"Pause";
+
+if(paused){
+bgMusic.pause();
+}else if(current<reasons.length){
+playMusic();
+}
+}
+
+for(let i=0;i<20;i++){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML="♥";
+heart.style.left=Math.random()*100+"%";
+heart.style.animationDelay=Math.random()*9+"s";
+heart.style.fontSize=(12+Math.random()*20)+"px";
+
+document.getElementById("hearts").appendChild(heart);
+}
+
+</script>
+</body>
+</html>
